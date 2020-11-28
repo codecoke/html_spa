@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,viewport-fit=cover"
+    />
+    <title>wpa home</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <link rel="stylesheet" href="./dest/style/cssreset_normal.css" />
+    <style>
+      /* hash toogle */
+      [id*="-tg-hs-"],
+      [id*="-tg-hs-"] ~ .tg-gps > [class|="tg-hs"],
+      [id*="-tg-hs-"]:target ~ .tg-gps > [class|="tg-hs"],
+      [id*="-tg-hs-"]:target ~ .tg-gps > .tg-hs-1 {
+        display: none;
+      }
+      [id$="-tg-hs-10"]:target ~ .tg-gps > .tg-hs-10,
+      [id$="-tg-hs-9"]:target ~ .tg-gps > .tg-hs-9,
+      [id$="-tg-hs-8"]:target ~ .tg-gps > .tg-hs-8,
+      [id$="-tg-hs-7"]:target ~ .tg-gps > .tg-hs-7,
+      [id$="-tg-hs-6"]:target ~ .tg-gps > .tg-hs-6,
+      [id$="-tg-hs-5"]:target ~ .tg-gps > .tg-hs-5,
+      [id$="-tg-hs-4"]:target ~ .tg-gps > .tg-hs-4,
+      [id$="-tg-hs-3"]:target ~ .tg-gps > .tg-hs-3,
+      [id$="-tg-hs-2"]:target ~ .tg-gps > .tg-hs-2,
+      [id$="-tg-hs-1"]:target ~ .tg-gps > .tg-hs-1,
+      [id*="-tg-hs-"] ~ .tg-gps > .tg-hs-1 {
+        display: block;
+      }
+      [id*="-tg-hs-"]:nth-child(n + 2).no-footer:target ~ .tg-gps > footer,
+      [id*="-tg-hs-"]:nth-child(n + 2).no-header:target ~ .tg-gps > header {
+        /* first not-use */
+        display: none;
+      }
+      /* hash toogle end */
+
+      /* ck-toogle */
+      label[for^="tg-ck-"] {
+        cursor: pointer;
+      }
+      input[id^="tg-ck-"] {
+        display: none;
+      }
+      input[id^="tg-ck-"]:checked ~ .tg-gps > [class^="tg-ck-"] {
+        display: none;
+      }
+      #tg-ck-c-10:checked ~ .tg-gps > .tg-ck-c-10,
+      #tg-ck-c-9:checked ~ .tg-gps > .tg-ck-c-9,
+      #tg-ck-c-8:checked ~ .tg-gps > .tg-ck-c-8,
+      #tg-ck-c-7:checked ~ .tg-gps > .tg-ck-c-7,
+      #tg-ck-c-6:checked ~ .tg-gps > .tg-ck-c-6,
+      #tg-ck-c-5:checked ~ .tg-gps > .tg-ck-c-5,
+      #tg-ck-c-4:checked ~ .tg-gps > .tg-ck-c-4,
+      #tg-ck-c-3:checked ~ .tg-gps > .tg-ck-c-3,
+      #tg-ck-c-2:checked ~ .tg-gps > .tg-ck-c-2,
+      #tg-ck-c-1:checked ~ .tg-gps > .tg-ck-c-1,
+      #tg-ck-c-10:checked ~ .tg-gps > .tg-ck-b-10,
+      #tg-ck-b-9:checked ~ .tg-gps > .tg-ck-b-9,
+      #tg-ck-b-8:checked ~ .tg-gps > .tg-ck-b-8,
+      #tg-ck-b-7:checked ~ .tg-gps > .tg-ck-b-7,
+      #tg-ck-b-6:checked ~ .tg-gps > .tg-ck-b-6,
+      #tg-ck-b-5:checked ~ .tg-gps > .tg-ck-b-5,
+      #tg-ck-b-4:checked ~ .tg-gps > .tg-ck-b-4,
+      #tg-ck-b-3:checked ~ .tg-gps > .tg-ck-b-3,
+      #tg-ck-b-2:checked ~ .tg-gps > .tg-ck-b-2,
+      #tg-ck-b-1:checked ~ .tg-gps > .tg-ck-b-1,
+      #tg-ck-a-10:checked ~ .tg-gps > .tg-ck-a-10,
+      #tg-ck-a-9:checked ~ .tg-gps > .tg-ck-a-9,
+      #tg-ck-a-8:checked ~ .tg-gps > .tg-ck-a-8,
+      #tg-ck-a-7:checked ~ .tg-gps > .tg-ck-a-7,
+      #tg-ck-a-6:checked ~ .tg-gps > .tg-ck-a-6,
+      #tg-ck-a-5:checked ~ .tg-gps > .tg-ck-a-5,
+      #tg-ck-a-4:checked ~ .tg-gps > .tg-ck-a-4,
+      #tg-ck-a-3:checked ~ .tg-gps > .tg-ck-a-3,
+      #tg-ck-a-2:checked ~ .tg-gps > .tg-ck-a-2,
+      #tg-ck-a-1:checked ~ .tg-gps > .tg-ck-a-1 {
+        display: inherit;
+      }
+      /* ck-toogle ned */
+
+      /* config */
+      :root {
+        --container-maxwith: 58rem;
+        --copyright-year: "© 2020";
+        --beian: "某icp备 198400860996";
+      }
+
+      /* global */
+      .doc-container {
+        margin: 0 auto;
+      }
+
+      .doc-container > .tg-gps {
+        max-width: var(--container-maxwith);
+        margin: 0 auto;
+      }
+
+      /*
+      simple:
+      reset web_wrapper for tatget 
+      */
+      [id$="tg-hs-7"]:target ~ .tg-gps {
+        max-width: inherit;
+        background-color: lightblue;
+        /* background-color: greenyellow; */
+      }
+      .tg-hs-7 {
+        max-width: var(--container-maxwith);
+        margin: 0 auto;
+      }
+      /* reset simple end */
+
+      main .content {
+        margin: 0 auto;
+        border: 1px solid green;
+      }
+
+      main .content > * {
+        outline: 1px solid #bbb;
+        margin: 1px;
+      }
+
+      /* footer */
+      footer {
+        text-align: center;
+      }
+
+      /* global footer */
+      main > footer {
+        /* border: 1px solid #bbb; */
+      }
+      .footer_copyright {
+        display: flex; 
+        flex-direction: column;
+      }
+      .footer_copyright > strong {
+        min-height: 2.2rem;
+        line-height: 2.2rem;
+      }
+      .footer_copyright > strong:before {
+        content: var(--copyright-year);
+        margin-right: 5px;
+        font-weight: normal;
+      }
+      .footer_beian {
+        text-decoration: none;
+      }
+      .footer_beian:before {
+        /* background-color: rgba(0, 0, 0, 0.3); */
+        opacity: 0.6;
+        content: var(--beian);
+        font-size: xx-small;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body class="doc_wrapper">
+    <div class="doc-container">
+      <span id="any-tg-hs-1">1</span>
+      <span id="flex-tg-hs-2">flex</span>
+      <span id="any-tg-hs-3" class="no-footer no-header">3</span>
+      <span id="any-tg-hs-4">4</span>
+      <span id="any-tg-hs-5">5</span>
+      <span id="any-tg-hs-6">6</span>
+      <span id="any-tg-hs-7" class="no-footer no-header">7</span>
+
+      <main class="tg-gps">
+        <header>
+          <div class="logo">logo</div>
+          <div class="banner">
+            <nav>
+              <a href="#">other</a>
+              <a href="#any-tg-hs-1">1n</a>
+              <a href="#flex-tg-hs-2">flex</a>
+              <a href="#any-tg-hs-3">3n</a>
+              <a href="#any-tg-hs-4">4n</a>
+              <a href="#any-tg-hs-5">5n</a>
+              <a href="#any-tg-hs-6">6n</a>
+              <a href="#any-tg-hs-7">7n</a>
+            </nav>
+          </div>
+        </header>
+        <!-- <div class="content">a</div> -->
+
+        <div class="tg-hs-1">
+          <input type="radio" name="tg-ck-a" id="tg-ck-a-1" />
+          <input type="radio" name="tg-ck-a" id="tg-ck-a-2" checked />
+          <input type="radio" name="tg-ck-a" id="tg-ck-a-3" />
+
+          <section class="tg-gps content">
+            <header>
+              <h1>hash 1 home</h1>
+              <nav>
+                <!-- <a href="#">other</a>
+                <a href="#any-tg-hs-1">1n</a>
+                <a href="#flex-tg-hs-2">2n</a>
+                <a href="#any-tg-hs-3">3n</a>
+                <a href="#any-tg-hs-4">4n</a>
+                <a href="#any-tg-hs-5">5n</a>
+                <a href="#any-tg-hs-6">6n</a>
+                <a href="#any-tg-hs-7">7n</a> -->
+                <label for="tg-ck-a-1">lb 1</label>
+                <label for="tg-ck-a-2">lb 2</label>
+                <label for="tg-ck-a-3">lb 3</label>
+              </nav>
+            </header>
+
+            <div class="tg-ck-a-1">
+              <article class="content__main">
+                <aside>aside tg-ck-a-1</aside>
+                <section>
+                  <h2>cpntent__main>section</h2>
+                  article container
+                </section>
+              </article>
+            </div>
+
+            <div class="tg-ck-a-2">
+              <input type="radio" name="tg-ck-b" id="tg-ck-b-1" />
+              <input type="radio" name="tg-ck-b" id="tg-ck-b-2" checked />
+              <input type="radio" name="tg-ck-b" id="tg-ck-b-3" />
+              <input type="radio" name="tg-ck-b" id="tg-ck-b-4" />
+
+              <article class="tg-gps content__main">
+                <aside>
+                  <nav>
+                    <label for="tg-ck-b-1">tg 1</label>
+                    <label for="tg-ck-b-2">tg 2</label>
+                    <label for="tg-ck-b-3">tg 3</label>
+                    <label for="tg-ck-b-4">tg 4</label>
+                    <a href="#">home</a>
+                  </nav>
+                </aside>
+
+                <section class="tg-ck-b-1">section tg-ck-b-1</section>
+
+                <section class="tg-ck-b-2">
+                  <h2>section tg-ck-b-2</h2>
+                  <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Explicabo dolore nam ea.
+                  </p>
+                </section>
+                <section class="tg-ck-b-3">section tg-ck-b-3</section>
+                <section class="tg-ck-b-4">
+                  <h2>tg-ck-a-4</h2>
+                  cpntent__main>section article container
+                </section>
+              </article>
+            </div>
+
+            <div class="tg-ck-a-3">
+              <article class="content__main">
+                <aside>aside tg-ck-a-3</aside>
+                <section>
+                  <h3>lable toogle 3</h3>
+                  article container
+                </section>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <!-- tag hash page 2 -->
+        <div class="tg-hs-2">
+          <section class="content">
+            <h2>flex</h2>
+          </section>
+        </div>
+
+        <article class="tg-hs-3">tab-hash3</article>
+        <article class="tg-hs-4">
+          <nav>
+            <a href="#">other 4</a>
+            <a href="#any-tg-hs-1">1n</a>
+            <a href="#flex-tg-hs-2">2n</a>
+            <a href="#any-tg-hs-3">3n</a>
+            <a href="#any-tg-hs-4">4n</a>
+            <a href="#any-tg-hs-5">5n</a>
+            <a href="#any-tg-hs-6">6n</a>
+            <a href="#any-tg-hs-7">7n</a>
+          </nav>
+        </article>
+        <article class="tg-hs-5">tab-hash5</article>
+        <article class="tg-hs-6">tab-hash6</article>
+
+        <article class="tg-hs-7">
+          <nav>
+            <a href="">home</a>
+            <a href="#any-tg-hs-1">1n</a>
+            <a href="#flex-tg-hs-2">2n</a>
+            <a href="#any-tg-hs-3">3n</a>
+            <a href="#any-tg-hs-4">4n</a>
+            <a href="#any-tg-hs-5">5n</a>
+            <a href="#any-tg-hs-6">6n</a>
+            <a href="#any-tg-hs-7">7n</a>
+          </nav>
+          <footer>hash 7 footer</footer>
+        </article>
+        <!-- footer global -->
+        <footer>
+          <nav>
+            <a href="#">other</a>
+            <a href="#any-tg-hs-1">1n</a>
+            <a href="#flex-tg-hs-2">2n</a>
+            <a href="#any-tg-hs-3">3n</a>
+            <a href="#any-tg-hs-4">4n</a>
+            <a href="#any-tg-hs-5">5n</a>
+            <a href="#any-tg-hs-6">6n</a>
+            <a href="#any-tg-hs-7">7n</a>
+          </nav>
+          <section class="footer_copyright">
+            <strong><a href="#">MF</a></strong>
+            <!-- https://beian.miit.gov.cn/  -->
+            <p>
+              <a
+                href=""
+                rel="nofollow"
+                target="_blank"
+                class="footer_beian"
+              ></a>
+            </p>
+          </section>
+        </footer>
+      </main>
+    </div>
+
+    <!-- 2020-11-26 16:59:32 -->
+    <script type="module">
+      // import {} from './js/lib';
+    </script>
+  </body>
+</html>

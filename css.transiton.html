@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,viewport-fit=cover"
+    />
+    <title>css.transiton</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" >
+    <!-- <link rel="stylesheet" href="./style"> -->
+    <style>
+      *,*::before,*::after{box-sizing:border-box}ul[class],ol[class]{padding:0}body,h1,h2,h3,h4,p,ul[class],ol[class],figure,blockquote,dl,dd{margin:0}html{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}ul[class],ol[class]{list-style:none}a:not([class]){text-decoration-skip-ink:auto}img,picture{max-width:100%;display:block}article>*+*{margin-top:1em}input,button,textarea,select{font:inherit}img:not([alt]){filter:blur(10px)}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+    
+      body{margin:1rem;}
+      header > h1,footer{
+        text-align: center;
+      }
+      main{
+        min-height: 100vh;
+      }
+      main >*{
+        /* border:1px solid #bbb; */
+        outline: 1px solid green;
+        margin:2px;        
+        
+      }
+      main>article{
+        position: relative;
+        min-height:20rem;
+      }
+
+
+    [id*="_toogle_"], 
+    [id*="_toogle_"]~*>.hash_toogle>section[class*="_toogle_"],
+    [id*="_toogle_"]:target~*>.hash_toogle>section[class*="_toogle_"]
+    {
+        display: none;
+    }
+    .hash_toogle>section[class*="_toogle_"]:first-child,
+    [id$="_toogle_1"]:target~*>.hash_toogle>section[class$="_toogle_1"],
+    [id$="_toogle_2"]:target~*>.hash_toogle>section[class$="_toogle_2"],
+    [id$="_toogle_3"]:target~*>.hash_toogle>section[class$="_toogle_3"],
+    [id$="_toogle_4"]:target~*>.hash_toogle>section[class$="_toogle_4"],
+    [id$="_toogle_5"]:target~*>.hash_toogle>section[class$="_toogle_5"]
+    {
+      display: initial;
+    }
+
+
+
+    
+    </style>
+  </head>
+  <body>
+    <!-- 2020-11-25 12:44:23 -->
+    <div class="doc_wrap">    
+    <span id="hash_toogle_1"></span>
+    <span id="hash_toogle_2"></span>
+    <span id="hash_toogle_3"></span>
+    <span id="hash_toogle_4"></span>
+    <span id="hash_toogle_5"></span>
+
+    <main class="doc_container">
+      <header><h1>css transition</h1></header>
+      <aside class="sublinks">
+        <nav>
+          <a href="#other">home</a>
+          <a href="#hash_toogle_1">transition</a>
+          <a href="#hash_toogle_2">transform</a>
+          <a href="#hash_toogle_3">css select</a>
+          <a href="#hash_toogle_4">hash_toogle_4</a>    
+          <a href="#bootstrap_name_toogle_5">bootstrap name</a>    
+      </nav>
+      </aside>
+      <article class="hash_toogle">
+        
+        <section class="hash_toogle_5">
+          <h2>bootstrap name</h2>
+          <textarea name="" id="" cols="70" rows="15">
+            .text-primary         .text-secondary
+            .text-success         .text-danger
+            .text-warning         .text-info
+            .text-light           .text-dark
+            .text-body            .text-muted
+            .text-white
+            $theme-colors: (
+              "primary":    $primary,
+              "secondary":  $secondary,
+              "success":    $success,
+              "info":       $info,
+              "warning":    $warning,
+              "danger":     $danger,
+              "light":      $light,
+              "dark":       $dark
+            );
+          </textarea>
+        </section>
+        <section class="hash_toogle_3">
+          <h2>select</h2>
+          <textarea name="" id="" cols="80" rows="25">
+            .first span:nth-child(2n+1)
+            tr:not(:nth-child(3)) 
+            tr:not(:nth-child(1n+6)):not(:nth-child(3))
+
+            nth-child(n+6)  6~n
+            nth-child(-n+9)  1~9
+            nth-child(n+4):nth-child(-n+8) 4~8
+
+            p:first-child
+            :nth-last-child(4n) 从后往前 4倍数节点
+            :nth-last-child(-n+3)最后三个元素
+            p:nth-of-type(4n) 第四个 <p> 元素              
+            input:default {
+              box-shadow: 0 0 2px 1px coral;
+            }/*inpur checked*/
+            :nth-child(an+b)
+              0n+3 或简单的 3 匹配第三个元素。
+              1n+0 或简单的 n 匹配每个元素。
+              2n+0 或简单的 2n 匹配位置为 2、4、6、8...的元素（n=0时，2n+0=0，第0个元素不存在，因为是从1开始排序)。你可以使用关键字 even 来替换此表达式。
+              2n+1 匹配位置为 1、3、5、7...的元素。你可以使用关键字 odd 来替换此表达式。
+              3n+4 匹配位置为 4、7、10、13...的元素。
+
+          </textarea>
+        </section>
+        
+        <section class="hash_toogle_1">
+          <p>
+            transition 是 CSS 以下 transition(过度) 的一个简写属性: 
+            <ul>
+              <li>transition-property 指定的属性</li>
+              <li>transition-duration 指定过渡的时长</li>
+              <li>transition-timing-function 指定一个函数，定义属性值怎么变化。缓动函数 Timing functions 定义属性如何计算。</li>
+              <li>transition-delay 指定延迟，即属性开始变化时与过渡开始发生时之间的时长。</li>
+              <li>transform: rotate(180deg);</li>
+            </ul>             
+          </p>
+          <textarea name="" id="" cols="80" rows="25">
+            /* Apply to 1 property */
+            /* property name | duration */
+            transition: margin-right 4s;
+            
+            /* property name | duration | delay */
+            transition: margin-right 4s 1s;
+            
+            /* property name | duration | timing function */
+            transition: margin-right 4s ease-in-out;
+            
+            /* property name | duration | timing function | delay */
+            transition: margin-right 4s ease-in-out 1s;
+            
+            /* Apply to 2 properties */
+            transition: margin-right 4s, color 1s;
+            
+            /* Apply to all changed properties */
+            transition: all 0.5s ease-out;
+            
+            /* Global values */
+            transition: inherit;
+            transition: initial;
+            transition: unset;
+                  </textarea>
+        </section>
+        <section class="active hash_toogle_2">
+            <h2>css transform</h2>
+          <textarea name="" id="" cols="80" rows="25">
+            /* Keyword values */
+            transform: none;
+            
+            /* Function values */
+            transform: matrix(1.0, 2.0, 3.0, 4.0, 5.0, 6.0);
+            transform: translate(12px, 50%);
+            transform: translateX(2em);
+            transform: translateY(3in);
+            transform: scale(2, 0.5);
+            transform: scaleX(2);
+            transform: scaleY(0.5);
+            transform: rotate(0.5turn);
+            transform: skew(30deg, 20deg);
+            transform: skewX(30deg);
+            transform: skewY(1.07rad);
+            transform: matrix3d(
+              1.0, 2.0, 3.0, 4.0, 5.0, 
+              6.0, 7.0, 8.0, 9.0, 10.0, 
+              11.0, 12.0, 13.0, 14.0, 
+              15.0, 16.0
+              );
+            transform: translate3d(12px, 50%, 3em);
+            transform: translateZ(2px);
+            transform: scale3d(2.5, 1.2, 0.3);
+            transform: scaleZ(0.3);
+            transform: rotate3d(1, 2.0, 3.0, 10deg);
+            transform: rotateX(10deg);
+            transform: rotateY(10deg);
+            transform: rotateZ(10deg);
+            transform: perspective(17px);
+            
+            /* Multiple function values */
+            transform: translateX(10px) rotate(10deg) translateY(5px);
+            
+            /* Global values */
+            transform: inherit;
+            transform: initial;
+            transform: unset;
+                  </textarea>
+        </section>
+        <section class="hash_toogle_4">transform4 ...</section>
+      </article>
+      <footer>&copy; mf</footer>
+      
+    </main>
+  </div>
+    <script type="module">
+      // import {} from './js/lib';
+    </script>
+  </body>
+</html>
