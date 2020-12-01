@@ -1,0 +1,116 @@
+/* @include positon($t: 0); => position: absolute; top: 0;
+/* @include positon($t: 0, $l: 100%); => position: absolute; top: 0; left: 100%;
+/* @include positon($v: 0); => position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+---------------------------- */
+.doc-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  grid-gap: 1em;
+}
+
+.doc-container > div {
+  outline: 1px solid #27c978;
+  margin: 2px;
+  padding: 2px;
+}
+
+.doc-container > div:before, .doc-container > div:after {
+  display: inline-block;
+  outline: 1px solid #08f2d6;
+  margin: 2px;
+  padding: 2px;
+}
+
+.doc-container > div:before {
+  content: attr(data-color);
+  margin-right: 5px;
+}
+
+.doc-container > div:after {
+  margin-left: 5px;
+}
+
+.doc-container > div:nth-child(1):after {
+  content: "66";
+}
+
+.doc-container > div:nth-child(2):after {
+  content: "65";
+}
+
+.doc-container > div:nth-child(3):before {
+  content: "saturation:";
+}
+
+.doc-container > div:nth-child(3):after {
+  content: "0.76336%";
+}
+
+.doc-container > div:nth-child(4):before {
+  content: "lightness:";
+}
+
+.doc-container > div:nth-child(4):after {
+  content: "0.79412";
+}
+
+.doc-container > div:nth-child(5):before {
+  content: "alpha:";
+}
+
+.doc-container > div:nth-child(5):after {
+  content: "1";
+}
+
+.doc-container > div:nth-child(6) {
+  background-color: #176468;
+  color: #43ced5;
+}
+
+.doc-container > div:nth-child(6):before, .doc-container > div:nth-child(6):after {
+  outline-color: #43ced5;
+}
+
+.doc-container > div:nth-child(6):after {
+  content: "#FF176468,1";
+}
+
+.doc-container > div:nth-child(7) {
+  background-color: #dca14d;
+  color: #95641d;
+}
+
+.doc-container > div:nth-child(7):before, .doc-container > div:nth-child(7):after {
+  outline-color: #95641d;
+}
+
+.doc-container > div:nth-child(7):after {
+  content: "#FFDCA14D";
+}
+
+.doc-container > div:nth-child(8) {
+  background-color: #d4cf7e;
+  color: #b1ab3b;
+}
+
+.doc-container > div:nth-child(8):before, .doc-container > div:nth-child(8):after {
+  outline-color: #989233;
+}
+
+.doc-container > div:nth-child(8):after {
+  content: "#FFD4CF7E,40%";
+}
+
+.wrapper input.p {
+  /* ... */
+  color: red;
+}
+
+.wrapper select.p {
+  /* ... */
+}
+
+[data-tooltip]:after {
+  content: attr(data-tooltip) "\a" attr(data-tooltip);
+  white-space: pre-wrap;
+}

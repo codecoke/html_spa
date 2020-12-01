@@ -1,0 +1,80 @@
+// @use "sass:string";
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+@function names-lists($n, $name: "name_lists_$i", $replace_i: "$i") {
+  $r: str-replace($name, $replace_i, 1);
+  $join_str: ",";
+  @if str-length($name) >20 {
+    $join_str: $join_str + "\a";
+  }
+  @if $n > 1 {
+    @for $i from 2 to ($n + 1) {
+      $r: str-replace($name, $replace_i, $i) + $join_str + $r;
+    }
+  }
+  @return $r;
+}
+
+@function colors-random($alpha: 1, $red: random(255), $green: random(255), $blue: random(255)) {
+  @return rgba($red, $green, $blue, $alpha);
+}
+
+@function colors-invert($in-color: colors-random(), $weight: 0.4) {
+  @return scale-color(
+    $in-color,
+    $lightness: percentage($weight) * if((lightness($in-color) / 100%) <0.47, 1, -1)
+  );
+}
+
+// @mixin attr-random($properties: "1px solid", $property-name: "outline") {
+//   #{$property-name}: unquote($properties) colors-random();
+//   @if $property-name== "outline" {
+//     margin: 2px;
+//   }
+// }
+
+@mixin test-color($color: colors-random()) {
+  outline: 1px solid $color;
+  margin: 2px;
+  padding: 2px;
+}
+
+/* @include positon($t: 0); => position: absolute; top: 0;
+/* @include positon($t: 0, $l: 100%); => position: absolute; top: 0; left: 100%;
+/* @include positon($v: 0); => position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+---------------------------- */
+@mixin position($p: absolute, $t: null, $r: null, $b: null, $l: null, $v: null) {
+  $t: $v or $t;
+  $r: $v or $r;
+  $b: $v or $b;
+  $l: $v or $l;
+  position: $p;
+  @if $t {
+    top: $t;
+  }
+  @if $r {
+    right: $r;
+  }
+  @if $b {
+    bottom: $b;
+  }
+  @if $l {
+    left: $l;
+  }
+}
+
+// develop vars
+%test-color {
+  outline: 1px solid colors-random();
+  margin: 2px;
+  padding: 2px;
+}

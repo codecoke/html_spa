@@ -1,0 +1,124 @@
+@import "_css_reset_normal";
+@import "_mf_functions";
+
+// '#' + Math.floor(Math.random()*16777215).toString(16);
+
+/* tag change by hash */
+$tg-pre: "tg";
+$tg-hs: "#{$tg-pre}-hs";
+$tg-ck: "#{$tg-pre}-ck";
+$tg-gps: "#{$tg-pre}-gps";
+
+[id*="#{$tg-hs}-"],
+[id*="-#{$tg-hs}-"] ~ .#{$tg-gps} > [class|="#{$tg-hs}"],
+[id*="-#{$tg-hs}-"]:nth-child(n + 2).no-header:target ~ .#{$tg-gps} > header,
+[id*="-#{$tg-hs}-"]:nth-child(n + 2).no-footer:target ~ .#{$tg-gps} > footer,
+[id*="-#{$tg-hs}-"]:target ~ .#{$tg-gps} > [class|="#{$tg-hs}"] {
+  display: none;
+}
+
+[id*="-#{$tg-hs}-"] ~ .#{$tg-gps} > .#{$tg-hs}-1,
+#{names-lists(9,'[id$="-#{$tg-hs}-$i"]:target ~ .#{$tg-gps} > .#{$tg-hs}-$i')} {
+  display: block;
+}
+/* tag toogle by hash end */
+
+footer > nav {
+  text-align: center;
+}
+
+/* config */
+:root {
+  --container-maxwith: 58rem;
+  --copyright-year: "© 2020";
+  --miit-beian: "某icp备 198400860996";
+}
+
+.doc-main {
+  // @extend %test-color;
+  & > * {
+    @include test-color();
+
+    &:nth-child(1) {
+      outline-color: colors-random();
+    }
+    &:last-child {
+      outline-color: colors-random();
+    }
+  }
+
+  // & > header,
+  // & > footer {
+  //   outline-color: colors-random();
+  // }
+}
+
+// global footer
+.doc-main > footer {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  text-align: center;
+  // justify-content: center;
+  // justify-items: center;
+  // justify-self: center;
+  // min-height: 8rem;
+
+  > nav {
+    & > a {
+      margin-right: 3px;
+      text-decoration: none;
+      border-bottom: 1px solid #bbb;
+
+      &[href^="#"] {
+        &:empty:before {
+          // visibility: ;
+          // text-decoration: underline;
+          vertical-align: baseline;
+          max-width: 120px;
+          display: inline-block;
+          max-height: 1.2rem;
+          overflow: hidden;
+          content: attr(href) " ";
+        }
+      }
+    }
+  }
+
+  > .copyright {
+    display: flex;
+    // justify-items: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 2rem;
+  }
+
+  > .miit_beian {
+    font-size: xx-small;
+    // line-height: 1.1;
+    height: 1rem;
+    line-height: 1rem;
+    > a {
+      display: inline-block;
+
+      transform: scale(0.8);
+      text-transform: uppercase;
+      text-decoration: none;
+      &:before {
+        content: var(--miit-beian);
+      }
+    }
+  }
+
+  // > * {
+  //   @include test-color();
+  // }
+}
+
+// a[class~="cc"] {
+//   color: blue;
+// }
+
+.t {
+  color: colors-random(0.3);
+  // @extend %test-color;
+}

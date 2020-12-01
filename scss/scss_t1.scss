@@ -1,0 +1,139 @@
+@import "_mf_functions";
+
+$tg-hs: "tg-hs";
+// $tg-hs-i: '[id$="-#{$tg-hs}-i"]:target ~ .#{$tg-hs}-gps > .#{$tg-hs}-[i]';
+
+.doc-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
+  grid-gap: 1em;
+
+  > div {
+    // @extend %test-color;
+    @include test-color();
+
+    $attr: attr(data-color);
+    $t12: true;
+
+    &:before,
+    &:after {
+      display: inline-block;
+      @include test-color();
+    }
+
+    &:before {
+      content: $attr;
+      margin-right: 5px;
+    }
+
+    &:after {
+      margin-left: 5px;
+    }
+
+    $c1: rgb(66, 65, 65);
+
+    &:nth-child(1):after {
+      content: quote(red($c1));
+    }
+    &:nth-child(2):after {
+      content: quote(green($c1));
+    }
+
+    &:nth-child(3) {
+      &:before {
+        content: quote("saturation:");
+      }
+      &:after {
+        content: quote(saturation($c1));
+      }
+    }
+
+    &:nth-child(4) {
+      $c1: rgb(196, 209, 196);
+      &:before {
+        content: quote("lightness:");
+      }
+      &:after {
+        content: quote((lightness($c1) / 100%));
+      }
+    }
+
+    &:nth-child(5) {
+      $c1: green;
+      &:before {
+        content: quote("alpha:");
+      }
+      &:after {
+        content: quote(alpha(#fff));
+      }
+    }
+
+    &:nth-child(6) {
+      $bg: colors-random();
+      background-color: $bg;
+      color: colors-invert($bg);
+      // color: invert($bg, $weight: 44%);
+      &:before,
+      &:after {
+        outline-color: colors-invert($bg);
+      }
+
+      &:after {
+        content: quote(ie-hex-str($bg) + "," + alpha($bg));
+      }
+    }
+
+    &:nth-child(7) {
+      $bg: colors-random();
+      background-color: $bg;
+      color: colors-invert($bg);
+      // color: invert($bg, $weight: 44%);
+      &:before,
+      &:after {
+        outline-color: colors-invert($bg);
+      }
+
+      &:after {
+        content: quote(ie-hex-str($bg));
+      }
+    }
+
+    &:nth-child(8) {
+      $bg: colors-random();
+      background-color: $bg;
+      color: colors-invert($bg, 0.3);
+      // color: invert($bg, $weight: 44%);
+      &:before,
+      &:after {
+        outline-color: colors-invert($bg);
+      }
+
+      &:after {
+        content: quote(ie-hex-str($bg) + "," + percentage(0.4));
+      }
+    }
+  }
+}
+
+@mixin unify-parent($child) {
+  @at-root #{selector-unify(&, $child)} {
+    @content;
+  }
+}
+
+.wrapper .p {
+  @include unify-parent("input") {
+    /* ... */
+    color: red;
+    @warn "hello";
+  }
+  @include unify-parent("select") {
+    /* ... */
+  }
+}
+
+[data-tooltip]:after {
+  content: attr(data-tooltip) "\a"attr(data-tooltip);
+  white-space: pre-wrap;
+  // content: $t2;
+}
