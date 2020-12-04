@@ -1,119 +1,7 @@
 @import "_mf_functions";
-
+@import "_emoji";
 $tg-hs: "tg-hs";
 // $tg-hs-i: '[id$="-#{$tg-hs}-i"]:target ~ .#{$tg-hs}-gps > .#{$tg-hs}-[i]';
-
-.doc-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(33%, 1fr));
-  grid-gap: 1em;
-
-  > div {
-    // @extend %test-color;
-    @include test-color();
-
-    $attr: attr(data-color);
-    $t12: true;
-
-    &:before,
-    &:after {
-      display: inline-block;
-      @include test-color();
-    }
-
-    &:before {
-      content: $attr;
-      margin-right: 5px;
-    }
-
-    &:after {
-      margin-left: 5px;
-    }
-
-    $c1: rgb(66, 65, 65);
-
-    &:nth-child(1):after {
-      content: quote(red($c1));
-    }
-    &:nth-child(2):after {
-      content: quote(green($c1));
-    }
-
-    &:nth-child(3) {
-      &:before {
-        content: quote("saturation:");
-      }
-      &:after {
-        content: quote(saturation($c1));
-      }
-    }
-
-    &:nth-child(4) {
-      $c1: rgb(196, 209, 196);
-      &:before {
-        content: quote("lightness:");
-      }
-      &:after {
-        content: quote((lightness($c1) / 100%));
-      }
-    }
-
-    &:nth-child(5) {
-      $c1: green;
-      &:before {
-        content: quote("alpha:");
-      }
-      &:after {
-        content: quote(alpha(#fff));
-      }
-    }
-
-    &:nth-child(6) {
-      $bg: colors-random();
-      background-color: $bg;
-      color: colors-invert($bg);
-      // color: invert($bg, $weight: 44%);
-      &:before,
-      &:after {
-        outline-color: colors-invert($bg);
-      }
-
-      &:after {
-        content: quote(ie-hex-str($bg) + "," + alpha($bg));
-      }
-    }
-
-    &:nth-child(7) {
-      $bg: colors-random();
-      background-color: $bg;
-      color: colors-invert($bg);
-      // color: invert($bg, $weight: 44%);
-      &:before,
-      &:after {
-        outline-color: colors-invert($bg);
-      }
-
-      &:after {
-        content: quote(ie-hex-str($bg));
-      }
-    }
-
-    &:nth-child(8) {
-      $bg: colors-random();
-      background-color: $bg;
-      color: colors-invert($bg, 0.3);
-      // color: invert($bg, $weight: 44%);
-      &:before,
-      &:after {
-        outline-color: colors-invert($bg);
-      }
-
-      &:after {
-        content: quote(ie-hex-str($bg) + "," + percentage(0.4));
-      }
-    }
-  }
-}
 
 @mixin unify-parent($child) {
   @at-root #{selector-unify(&, $child)} {
@@ -132,8 +20,58 @@ $tg-hs: "tg-hs";
   }
 }
 
-[data-tooltip]:after {
-  content: attr(data-tooltip) "\a"attr(data-tooltip);
-  white-space: pre-wrap;
-  // content: $t2;
+$v1: "i am v1";
+@function vv-($n: null, $map: "") {
+  $n: if($n and str-length($n) >0, $n, "undef");
+  @if variable-exists($name: $n) {
+    @return inspect("$" + $n);
+  }
+  @return $n;
 }
+
+$value-of-maps: (
+  "tag": (
+    "pre": "tg",
+    "hash": "hs",
+    "check": "ck",
+    "card": "cd",
+    "menu": "menu",
+    "group": "gps",
+  ),
+);
+
+@function v_($map-name: "tag", $name: "", $in-map: $value-of-maps) {
+  $r: null;
+  $q-map: map-get($in-map, $map-name);
+  @if $name== "" {
+    @return $q-map;
+  }
+  @if type-of($q-map) ==map {
+    @if str-index($name, "-") ==1 {
+      @return map-get($q-map, str-slice($name, 2));
+    }
+    $r: map-get($q-map, $name);
+    $pre: map-get($q-map, "pre");
+    @if $r and $pre {
+      $r: $pre + "-" + $r;
+    }
+  }
+  @return $r;
+}
+
+.t33 {
+  --a: #{v_(tag, -hash)};
+  --a: #{v_(tag, hash)};
+  --d: #{str-index("$string", "$")};
+  --e: #{str-slice("$string", 2)};
+  --b: #{variable-exists("v1")};
+  --c: #{variable-exists(v1)};
+}
+
+// @include emoji-icos("icos");
+
+// [data-tooltip]:after {
+//   content: attr(data-tooltip) "\a"attr(data-tooltip);
+//   white-space: pre-wrap;
+//   // content: $t2;
+// }

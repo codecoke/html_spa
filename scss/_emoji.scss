@@ -1,0 +1,59 @@
+// $words-a-z-map: "ⒶⒷⒸ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ ⓂⓃ ⓄⓅ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ" +
+//   "ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ";
+// $words-o-0-9-map: "➀➁ ➂ ➃ ➄ ➅ ➆ ➇ ➈➉ ➊➋ ➌ ➍ ➎ ➏ ➐ ➑ ➒➓";
+
+// $emojis-map: (
+
+//   "reflash": "⟳",
+//   "100": "💯",
+// );
+
+$emojis-map-normal: (
+  "house": "🏠",
+  "pass": "✔",
+  "fail": "✘",
+);
+
+// 🐼㋡,,,
+
+$emojis-map-face: (
+  "smail": "㋛",
+  "mark": "〠",
+  "kiss_cat": "😽",
+);
+
+$emoji-ico: (
+  "mark_face": "〠",
+  "b6": "⌬",
+  "o8": "♾",
+  "mail": "✉",
+  "mark": "🔖",
+  "copyright": "©",
+  "home": "🏠",
+);
+
+$emoji-names-map: (
+  "face": $emojis-map-face,
+  "normal": $emojis-map-normal,
+  "ico": $emoji-ico,
+);
+
+@function emojis($name, $map-name: "normal", $default-map: $emojis-map-normal) {
+  $query-map: map-get($emoji-names-map, $map-name);
+  @return map-get(if(type-of($query-map) ==map, $query-map, $default-map), $name);
+}
+
+@mixin emoji-icos($icos-name: "ico") {
+  [class|="#{$icos-name}"] {
+    display: inline-block;
+  }
+  i[class|="#{$icos-name}"]:before,
+  i[class|="#{$icos-name}"]:after {
+    font-style: normal;
+  }
+  @each $n, $v in $emoji-ico {
+    .#{$icos-name}-#{$n}:before {
+      content: $v;
+    }
+  }
+}

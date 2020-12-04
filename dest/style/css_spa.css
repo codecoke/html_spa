@@ -1,0 +1,346 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+}
+
+* ::before,
+* ::after {
+  box-sizing: border-box;
+}
+
+* [hidden] {
+  display: none;
+}
+
+ul [class],
+ol [class] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+article > * + * {
+  margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+img:not([alt]) {
+  filter: blur(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* @include positon($t: 0); => position: absolute; top: 0;
+/* @include positon($t: 0, $l: 100%); => position: absolute; top: 0; left: 100%;
+/* @include positon($v: 0); => position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+---------------------------- */
+/* tag change by hash */
+[id*="-tg-hs-"],
+[id*="-tg-hs-"] ~ .tg-gps > [class|="tg-hs"],
+[id*="-tg-hs-"]:nth-child(n + 2).no-header:target ~ .tg-gps > header,
+[id*="-tg-hs-"]:nth-child(n + 2).no-footer:target ~ .tg-gps > footer,
+[id*="-tg-hs-"]:target ~ .tg-gps > [class|="tg-hs"] {
+  display: none;
+}
+
+[class|="tg-hs"] > .d-flex-cols:not(header):not(footer) {
+  flex-grow: 1;
+}
+
+[id*="-tg-hs-"] ~ .tg-gps > .tg-hs-1,
+[id$="-tg-hs-10"]:target ~ .tg-gps > .tg-hs-10,
+[id$="-tg-hs-9"]:target ~ .tg-gps > .tg-hs-9,
+[id$="-tg-hs-8"]:target ~ .tg-gps > .tg-hs-8,
+[id$="-tg-hs-7"]:target ~ .tg-gps > .tg-hs-7,
+[id$="-tg-hs-6"]:target ~ .tg-gps > .tg-hs-6,
+[id$="-tg-hs-5"]:target ~ .tg-gps > .tg-hs-5,
+[id$="-tg-hs-4"]:target ~ .tg-gps > .tg-hs-4,
+[id$="-tg-hs-3"]:target ~ .tg-gps > .tg-hs-3,
+[id$="-tg-hs-2"]:target ~ .tg-gps > .tg-hs-2,
+[id$="-tg-hs-1"]:target ~ .tg-gps > .tg-hs-1 {
+  display: flex;
+  flex-flow: column;
+}
+
+/* tag toogle by hash end */
+/* tools */
+.test-border {
+  outline: 1px solid #1f0db3;
+  margin: 2px;
+  padding: 2px;
+}
+
+.test-border > * {
+  outline: 1px solid #73600c;
+  margin: 2px;
+  padding: 2px;
+}
+
+.test-border:nth-child(1) {
+  outline-color: #e974e4;
+}
+
+.test-border:nth-child(2) {
+  outline-color: #21ed3f;
+}
+
+.test-border:nth-child(3) {
+  outline-color: #a1ae8b;
+}
+
+.d-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.d-flex-center.row {
+  flex-flow: column;
+}
+
+.d-flex-center.max {
+  flex-grow: 1;
+}
+
+.d-flex-grow {
+  flex-grow: 1;
+}
+
+.d-flex-rows {
+  display: flex;
+  flex-flow: column;
+}
+
+.d-flex-rows.center {
+  align-items: center;
+}
+
+.d-flex-rows.middle {
+  justify-content: center;
+}
+
+.d-flex-rows.max,
+.d-flex-rows > .max {
+  flex-grow: 1;
+}
+
+.d-flex-cols {
+  display: flex;
+  flex-flow: row;
+}
+
+.d-flex-cols.rev {
+  flex-direction: row-reverse;
+}
+
+.d-flex-cols > aside:not(.max):not(.sub),
+.d-flex-cols > .aside {
+  flex-basis: 10rem;
+  order: -2;
+}
+
+.d-flex-cols > section:not(.max):not(.aside),
+.d-flex-cols > .sub {
+  flex: 0 1 10rem;
+  order: 2;
+}
+
+.d-flex-cols > div:not(.aside):not(.sub),
+.d-flex-cols > .max {
+  flex-grow: 1;
+}
+
+[class|="ico"] {
+  display: inline-block;
+}
+
+i[class|="ico"]:before,
+i[class|="ico"]:after {
+  font-style: normal;
+}
+
+.ico-mark_face:before {
+  content: "〠";
+}
+
+.ico-b6:before {
+  content: "⌬";
+}
+
+.ico-o8:before {
+  content: "♾";
+}
+
+.ico-mail:before {
+  content: "✉";
+}
+
+.ico-mark:before {
+  content: "🔖";
+}
+
+.ico-copyright:before {
+  content: "©";
+}
+
+.ico-home:before {
+  content: "🏠";
+}
+
+/* icos end */
+/* config */
+:root {
+  --doc-maxwith: 58rem;
+  --doc-padding: 0 10px;
+  --copyright-year: "2020";
+  --miit-beian: "唐icp备 198400860996";
+  --tag-pre: tg;
+  --tag-hash: tg-hs;
+  --tag-hash-count: 10;
+  --tag-check: tg-ck;
+  --tag-card: tg-cd;
+  --tag-menu: tg-menu;
+  --tag-group: tg-gps;
+}
+
+footer {
+  text-align: center;
+}
+
+footer > nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: wrap;
+  font-size: small;
+  min-height: 2rem;
+  line-height: 1.2rem;
+}
+
+footer > nav > a {
+  margin-right: 3px;
+  text-decoration: none;
+  border-bottom: 1px solid #bbb;
+  display: inline-block;
+}
+
+footer > nav > a[href^="#"]:empty:before {
+  max-width: 7rem;
+  max-height: 1.2rem;
+  overflow: hidden;
+  content: attr(href) " ";
+}
+
+footer .copyright {
+  min-height: 4rem;
+  font-size: 0.9rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+footer .copyright i:first-of-type {
+  font-style: normal;
+}
+
+footer .copyright i:first-of-type:before {
+  display: inline-block;
+  content: "©";
+  margin-right: 3px;
+}
+
+footer .copyright i:first-of-type:after {
+  content: var(--copyright-year);
+  margin-right: 5px;
+}
+
+footer .license {
+  font-size: 12px;
+  transform: scale(0.8);
+}
+
+footer .license a.miit_beian {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+footer .license a.miit_beian:before {
+  content: var(--miit-beian);
+}
+
+footer.d-flex-cols {
+  text-align: inherit;
+}
+
+footer.d-flex-cols > .aside {
+  flex-basis: 12rem;
+}
+
+footer.d-flex-cols .copyright {
+  font-size: 0.8rem;
+  min-height: 2rem;
+}
+
+footer.d-flex-cols .license {
+  font-size: 12px;
+  -webkit-transform-origin-x: 0;
+}
+
+.doc-main {
+  padding: var(--doc-padding);
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+  max-width: var(--doc-maxwith);
+  margin: 0 auto;
+}
+
+.doc-main > [class*="tg-hs-"] {
+  flex-grow: 1;
+}

@@ -1,9 +1,9 @@
 @import "_css_reset_normal";
 @import "_mf_functions";
-
-// '#' + Math.floor(Math.random()*16777215).toString(16);
+@import "_emoji";
 
 /* tag change by hash */
+$tg-couts: 10;
 $tg-pre: "tg";
 $tg-hs: "#{$tg-pre}-hs";
 $tg-ck: "#{$tg-pre}-ck";
@@ -18,10 +18,12 @@ $tg-gps: "#{$tg-pre}-gps";
 }
 
 [id*="-#{$tg-hs}-"] ~ .#{$tg-gps} > .#{$tg-hs}-1,
-#{names-lists(9,'[id$="-#{$tg-hs}-$i"]:target ~ .#{$tg-gps} > .#{$tg-hs}-$i')} {
+#{names-lists($tg-couts,'[id$="-#{$tg-hs}-$i"]:target ~ .#{$tg-gps} > .#{$tg-hs}-$i')} {
   display: block;
 }
 /* tag toogle by hash end */
+@include emoji-icos();
+/* icos end */
 
 footer > nav {
   text-align: center;
@@ -30,7 +32,7 @@ footer > nav {
 /* config */
 :root {
   --container-maxwith: 58rem;
-  --copyright-year: "© 2020";
+  --copyright-year: " 2020";
   --miit-beian: "某icp备 198400860996";
 }
 
@@ -90,35 +92,36 @@ footer > nav {
     justify-content: center;
     align-items: center;
     min-height: 2rem;
+    > i:after {
+      font-style: normal;
+      content: var(--copyright-year);
+      margin-right: 5px;
+    }
   }
 
-  > .miit_beian {
+  > .license {
     font-size: xx-small;
     // line-height: 1.1;
     height: 1rem;
     line-height: 1rem;
     > a {
       display: inline-block;
-
       transform: scale(0.8);
       text-transform: uppercase;
       text-decoration: none;
-      &:before {
+
+      &.miit_beian:before {
         content: var(--miit-beian);
       }
     }
   }
-
-  // > * {
-  //   @include test-color();
-  // }
 }
 
 // a[class~="cc"] {
 //   color: blue;
 // }
 
-.t {
-  color: colors-random(0.3);
-  // @extend %test-color;
-}
+// .t {
+//   color: colors-random(0.3);
+//   @extend %test-color;
+// }

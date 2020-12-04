@@ -35,6 +35,28 @@
   );
 }
 
+@function vars-($map-name: "tag", $name: "", $in-map: $vars-of-maps) {
+  $r: null;
+  $q-map: map-get($in-map, $map-name);
+  @if $name== "" {
+    @return $q-map;
+  }
+  @if type-of($q-map) ==map {
+    @if str-index($name, "-") ==1 {
+      @return map-get($q-map, str-slice($name, 2));
+    }
+    $r: map-get($q-map, $name);
+    @if $name== "pre" {
+      @return $r;
+    }
+    $pre: map-get($q-map, "pre");
+    @if $r and type-of($r) ==string and $pre {
+      $r: $pre + "-" + $r;
+    }
+  }
+  @return $r;
+}
+
 // @mixin attr-random($properties: "1px solid", $property-name: "outline") {
 //   #{$property-name}: unquote($properties) colors-random();
 //   @if $property-name== "outline" {
@@ -70,6 +92,27 @@
   @if $l {
     left: $l;
   }
+}
+
+// convert string
+// '#' + Math.floor(Math.random()*16777215).toString(16);
+
+@function to-list($value) {
+  @return if(type-of($value) != list, ($value), $value);
+}
+
+@function to-map($value) {
+  @return if(
+    type-of($value) != map,
+    (
+      1: $value,
+    ),
+    $value
+  );
+}
+
+@function to-bool($value) {
+  @return not($value or $value == "" or $value == 0 or $value == ());
 }
 
 // develop vars
